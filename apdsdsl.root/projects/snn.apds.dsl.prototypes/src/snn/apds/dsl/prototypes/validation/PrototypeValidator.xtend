@@ -3,14 +3,31 @@
  */
 package snn.apds.dsl.prototypes.validation
 
+import com.google.inject.Inject
+import org.eclipse.emf.ecore.EClass
+import org.eclipse.emf.ecore.EObject
+import org.eclipse.xtext.resource.IContainer
+import org.eclipse.xtext.resource.impl.ResourceDescriptionsProvider
+import com.google.inject.Inject
+import org.eclipse.xtext.validation.Check
+import snn.apds.dsl.attributes.Prototype
+
+import static extension org.eclipse.xtext.EcoreUtil2.*
+import snn.apds.dsl.attributes.AttributesPackage
 
 /**
  * This class contains custom validation rules. 
- *
+ * 
  * See https://www.eclipse.org/Xtext/documentation/303_runtime_concepts.html#validation
  */
 class PrototypeValidator extends AbstractPrototypeValidator {
-	
+
+	protected static val ISSUE_CODE_PREFIX = "org.example.smalljava."
+	protected static val MORE_CLASSES = ISSUE_CODE_PREFIX + "MoreClasses"
+
+//	@Inject ApdsDslLib apdsDslLib
+	@Inject ApdsDslIndex apdsDslIndex
+
 //	public static val INVALID_NAME = 'invalidName'
 //
 //	@Check
@@ -21,5 +38,19 @@ class PrototypeValidator extends AbstractPrototypeValidator {
 //					INVALID_NAME)
 //		}
 //	}
-	
+	@Check
+	def void checkClassPerFile(Prototype clazz) {
+		val siblings = clazz.getSiblingsOfType(Prototype)
+		if (siblings.length > 0) {
+			val uriClass = clazz.normalizedURI
+			val classes = apdsDslIndex.getVisiblePrototypesDescriptions(clazz)
+			if (classes.get(0).EObjectURI == uriClass) {
+				for (cl : siblings) {
+					error("The type " + cl.name + " should declared in another file", cl,
+						AttributesPackage.Literals.PROTOTYPE__NAME, MORE_CLASSES)
+				}
+			}
+		}
+	}
+
 }
