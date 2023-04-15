@@ -4,7 +4,17 @@
 package snn.apds.dsl.attributes
 
 class Model {
+	contains SubjectsHolder subjectsHolder
+	contains PrototypesHolder prototypesHolder
+}
+
+class SubjectsHolder {
+	String name
 	contains Subject[] subjects
+}
+
+class PrototypesHolder {
+	String name
 	contains Prototype[] prototypes
 }
 
@@ -12,7 +22,6 @@ class Subject {
 	String name
 	refers Prototype superType
 	contains Attribute[] attributes
-
 	op String toString() {
 		return 'name: "' + name + '"'
 	}
@@ -22,7 +31,6 @@ class Prototype {
 	String name
 	refers Prototype superType
 	contains Attribute[] attributes
-
 	op String toString() {
 		return 'name: "' + name + '"'
 	}
@@ -31,7 +39,6 @@ class Prototype {
 class Attribute {
 	String name
 	String title
-	
 	op String toString() {
 		return 'name: "' + name + '"'
 	}
