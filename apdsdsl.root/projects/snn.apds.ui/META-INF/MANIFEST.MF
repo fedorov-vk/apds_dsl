@@ -15,5 +15,7 @@ Require-Bundle: org.eclipse.osgi,
  org.eclipse.ui.ide,
  org.eclipse.xtext,
  snn.apds.dsl.prototypes;bundle-version="1.0.0",
- snn.apds.core
+ snn.apds.core,
+ org.eclipse.xtext.ui,
+ org.eclipse.xtext.util
 Export-Package: snn.apds.ui.wizards

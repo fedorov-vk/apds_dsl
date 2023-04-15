@@ -6,7 +6,7 @@ import org.eclipse.core.runtime.CoreException;
 
 public class ApdsProjectNature implements IProjectNature {
 
-	public static final String NATURE_ID = "apds.nature"; //$NON-NLS-1$
+	public static final String NATURE_ID = "snn.apds.core.apdsNature"; //$NON-NLS-1$
 	
 	@Override
 	public IProject getProject() {

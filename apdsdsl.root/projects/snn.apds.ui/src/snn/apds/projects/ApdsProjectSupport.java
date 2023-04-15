@@ -1,6 +1,8 @@
 package snn.apds.projects;
 
 import java.net.URI;
+import java.util.ArrayList;
+import java.util.Arrays;
 
 import org.eclipse.core.resources.IContainer;
 import org.eclipse.core.resources.IFolder;
@@ -10,13 +12,16 @@ import org.eclipse.core.resources.ResourcesPlugin;
 import org.eclipse.core.runtime.Assert;
 import org.eclipse.core.runtime.CoreException;
 import org.eclipse.core.runtime.IProgressMonitor;
+import org.eclipse.xtext.ui.XtextProjectHelper;
+
+import com.google.common.base.Preconditions;
 
 import snn.apds.core.natures.ApdsProjectNature;
 
 public class ApdsProjectSupport {
 	/**
 	 * Для этого замечательного проекта нам нужно:
-	 * <li>создать проект Eclipse, предлагаемый по умолчанию 
+	 * <li>создать проект Eclipse, предлагаемый по умолчанию
 	 * <li>добавить природу APDS проекта
 	 * <li>создать структуру папок
 	 * 
@@ -85,7 +90,8 @@ public class ApdsProjectSupport {
 	}
 
 	/**
-	 * Create a folder structure with a parent root, overlay, and a few child folders.
+	 * Create a folder structure with a parent root, overlay, and a few child
+	 * folders.
 	 * 
 	 * @param newProject
 	 * @param paths
@@ -98,14 +104,25 @@ public class ApdsProjectSupport {
 		}
 	}
 
+	/**
+	 * Добавляет природу проекту - APDS, Xtext.
+	 * 
+	 * @param project
+	 * @throws CoreException
+	 */
 	private static void addNature(IProject project) throws CoreException {
-		if (!project.hasNature(ApdsProjectNature.NATURE_ID)) {
+		Preconditions.checkNotNull(project);
+		boolean hasApdsNature = project.hasNature(ApdsProjectNature.NATURE_ID);
+		boolean hasXtextNature = project.hasNature(XtextProjectHelper.NATURE_ID);
+
+		if (hasApdsNature == false || hasXtextNature == false) {
 			IProjectDescription description = project.getDescription();
-			String[] prevNatures = description.getNatureIds();
-			String[] newNatures = new String[prevNatures.length + 1];
-			System.arraycopy(prevNatures, 0, newNatures, 0, prevNatures.length);
-			newNatures[prevNatures.length] = ApdsProjectNature.NATURE_ID;
-			description.setNatureIds(newNatures);
+			ArrayList<String> natures = new ArrayList<String>(Arrays.asList(description.getNatureIds()));
+			if (hasApdsNature == false)
+				natures.add(ApdsProjectNature.NATURE_ID);
+			if (hasXtextNature == false)
+				natures.add(XtextProjectHelper.NATURE_ID);
+			description.setNatureIds(natures.toArray(new String[natures.size()]));
 
 			IProgressMonitor monitor = null;
 			project.setDescription(description, monitor);
