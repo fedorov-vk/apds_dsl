@@ -30,7 +30,7 @@
       <perspectiveExtension
             targetID="snn.apds.perspective">
          <view
-               id="snn.apds.ui.views.ApdsNavigator"
+               id="snn.apds.ui.views.ApdsProjectExplorer"
                minimized="false"
                ratio="0.25"
                relationship="left"
@@ -41,11 +41,18 @@
    </extension>
    <extension
          point="org.eclipse.ui.views">
+      <category
+            id="snn.apds.ui.views.category"
+            name="ADPS Views"
+            parentCategory="org.eclipse.ui">
+      </category>
       <view
-            class="org.eclipse.ui.navigator.CommonNavigator"
-            icon="icons/sample.gif"
-            id="snn.apds.ui.views.ApdsNavigator"
-            name="Apds Navigator"
+            allowMultiple="false"
+            class="snn.apds.ui.views.project.ApdsProjectExplorer"
+            icon="icons/objs16/project-folder.png"
+            id="snn.apds.ui.views.ApdsProjectExplorer"
+            inject="true"
+            name="Apds Project Explorer"
             restorable="true">
       </view>
       <view
@@ -57,7 +64,7 @@
    <extension
          point="org.eclipse.ui.navigator.viewer">
       <viewerActionBinding
-            viewerId="snn.apds.ui.views.ApdsNavigator">
+            viewerId="snn.apds.ui.views.ApdsProjectExplorer">
          <includes>
             <actionExtension
                   pattern="org.eclipse.ui.navigator.resources.*">
@@ -65,9 +72,9 @@
          </includes>
       </viewerActionBinding>
       <viewerContentBinding
-            viewerId="snn.apds.ui.views.ApdsNavigator">
+            viewerId="snn.apds.ui.views.ApdsProjectExplorer">
          <includes>
-            <contentExtension pattern="snn.apds.ui.views.ApdsNavigator.customContent"/>
+            <contentExtension pattern="snn.apds.ui.views.ApdsProjectExplorer.customContent"/>
             <contentExtension pattern="org.eclipse.ui.navigator.resourceContent"/>
             <contentExtension pattern="org.eclipse.ui.navigator.resources.filters.*"/>
          </includes>

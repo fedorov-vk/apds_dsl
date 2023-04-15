@@ -625,6 +625,7 @@
         <setEntry value="slf4j.api@default:default"/>
     </setAttribute>
     <setAttribute key="selected_workspace_bundles">
+        <setEntry value="snn.apds.core@default:default"/>
         <setEntry value="snn.apds.dsl.attributes.model@default:default"/>
         <setEntry value="snn.apds.dsl.prototypes.ide@default:default"/>
         <setEntry value="snn.apds.dsl.prototypes.ui@default:default"/>
@@ -633,7 +634,6 @@
         <setEntry value="snn.apds.dsl.subjects.ui@default:default"/>
         <setEntry value="snn.apds.dsl.subjects@default:default"/>
         <setEntry value="snn.apds.ui@default:default"/>
-        <setEntry value="snn.apds.xtend.core@default:default"/>
     </setAttribute>
     <booleanAttribute key="show_selected_only" value="false"/>
     <stringAttribute key="templateConfig" value="${target_home}/configuration/config.ini"/>

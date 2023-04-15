@@ -23,7 +23,7 @@ class Subject {
 	refers Prototype superType
 	contains Attribute[] attributes
 	op String toString() {
-		return 'name: "' + name + '"'
+		return 'name: "' + Subject.name + '"'
 	}
 }
 
@@ -32,7 +32,7 @@ class Prototype {
 	refers Prototype superType
 	contains Attribute[] attributes
 	op String toString() {
-		return 'name: "' + name + '"'
+		return 'name: "' + Prototype.name + '"'
 	}
 }
 
@@ -40,6 +40,6 @@ class Attribute {
 	String name
 	String title
 	op String toString() {
-		return 'name: "' + name + '"'
+		return 'name: "' + Attribute.name + '"'
 	}
 }
