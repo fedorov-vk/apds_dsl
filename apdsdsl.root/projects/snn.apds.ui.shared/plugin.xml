@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.4"?>
+<plugin>
+   <extension
+         point="org.eclipse.ui.ide.projectNatureImages">
+      <image
+            icon="icons/nature_overlay.png"
+            id="snn.apds.nature.overlay"
+            natureId="snn.apds.core.apdsNature">
+      </image>
+   </extension>
+
+</plugin>

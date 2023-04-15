@@ -1,0 +1,12 @@
+Manifest-Version: 1.0
+Bundle-ManifestVersion: 2
+Bundle-Name: Shared
+Bundle-SymbolicName: snn.apds.ui.shared;singleton:=true
+Bundle-Vendor: SNN
+Bundle-Version: 1.0.0.qualifier
+Bundle-Activator: snn.apds.ui.shared.internal.Activator
+Bundle-RequiredExecutionEnvironment: JavaSE-17
+Automatic-Module-Name: snn.apds.ui.shared
+Bundle-ActivationPolicy: lazy
+Require-Bundle: org.eclipse.core.runtime,
+ org.eclipse.ui.ide
