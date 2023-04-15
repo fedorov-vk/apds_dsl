@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.0"?>
+
+<!--
+-->
+
+<plugin>
+
+   <extension point="org.eclipse.emf.ecore.generated_package">
+      <!-- @generated Attributes -->
+      <package
+            uri="http://www.apds.snn/dsl/Attributes"
+            class="snn.apds.dsl.attributes.AttributesPackage"
+            genModel="model/Attributes.xcore"/>
+   </extension>
+
+</plugin>

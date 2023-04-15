@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.4"?>
+<plugin>
+   <extension
+         point="org.eclipse.ui.newWizards">
+      <category
+            id="snn.apds.ui.category.wizards"
+            name="Проект APDS"
+            parentCategory="org.eclipse.ui.Basic">
+      </category>
+      <wizard
+            category="snn.apds.ui.category.wizards"
+            class="snn.apds.ui.wizards.NewProjectApds"
+            finalPerspective="snn.apds.ui.perspective"
+            icon="icons/sample.gif"
+            id="snn.apds.ui.wizard.new.apds"
+            name="Новый проект APDS">
+      </wizard>
+   </extension>
+   <extension
+         id="apds.nature"
+         point="org.eclipse.core.resources.natures">
+      <runtime>
+         <run
+               class="snn.apds.natures.ProjectNature">
+         </run>
+      </runtime>
+   </extension>
+   <extension
+         point="org.eclipse.ui.perspectives">
+      <perspective
+            class="snn.apds.ui.perspectives.PerspectiveFactory"
+            id="snn.apds.ui.perspective"
+            name="APDS">
+      </perspective>
+   </extension>
+   <extension
+         point="org.eclipse.ui.perspectiveExtensions">
+      <perspectiveExtension
+            targetID="snn.apds.ui.perspective">
+         <view
+               id="snn.apds.ui.views.ApdsNavigator"
+               minimized="false"
+               ratio="0.25"
+               relationship="left"
+               relative="org.eclipse.ui.editorss"
+               showTitle="true">
+         </view>
+      </perspectiveExtension>
+   </extension>
+   <extension
+         point="org.eclipse.ui.views">
+      <view
+            class="org.eclipse.ui.navigator.CommonNavigator"
+            icon="icons/sample.gif"
+            id="snn.apds.ui.views.ApdsNavigator"
+            name="Apds Navigator"
+            restorable="true">
+      </view>
+   </extension>
+   <extension
+         point="org.eclipse.ui.navigator.viewer">
+      <viewerActionBinding
+            viewerId="snn.apds.ui.views.ApdsNavigator">
+         <includes>
+            <actionExtension
+                  pattern="org.eclipse.ui.navigator.resources.*">
+            </actionExtension>
+         </includes>
+      </viewerActionBinding>
+      <viewerContentBinding
+            viewerId="snn.apds.ui.views.ApdsNavigator">
+         <includes>
+            <contentExtension pattern="snn.apds.ui.views.ApdsNavigator.customContent"/>
+            <contentExtension pattern="org.eclipse.ui.navigator.resourceContent"/>
+            <contentExtension pattern="org.eclipse.ui.navigator.resources.filters.*"/>
+         </includes>
+      </viewerContentBinding>
+   </extension>
+
+</plugin>

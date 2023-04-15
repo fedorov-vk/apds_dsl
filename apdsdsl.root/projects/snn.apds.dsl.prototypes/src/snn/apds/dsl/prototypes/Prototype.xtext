@@ -1,0 +1,21 @@
+grammar snn.apds.dsl.prototypes.Prototype with org.eclipse.xtext.common.Terminals
+
+import "http://www.apds.snn/dsl/Attributes"
+import "http://www.eclipse.org/emf/2002/Ecore" as ecore
+
+Model:
+	prototypes+=Prototype*;
+
+Prototype returns Prototype:
+	{Prototype}
+	'prototype' name=ID ('extends' superType=[Prototype])? '{'
+	attributes+=Attribute*
+	'}';
+
+Attribute returns Attribute:
+	{Attribute}
+	'Attribute'
+	name=ID
+	'{'
+	('title' title=ID)?
+	'}';

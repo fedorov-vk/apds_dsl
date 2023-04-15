@@ -1,0 +1,38 @@
+@Ecore(nsPrefix="attributes", nsURI="http://www.apds.snn/dsl/Attributes")
+@GenModel(modelDirectory="/snn.apds.dsl.attributes.model/src-gen") // required to generate Java code from Maven.
+@GenModel(forceOverwrite="true", updateClasspath="false")
+package snn.apds.dsl.attributes
+
+class Model {
+	contains Subject[] subjects
+	contains Prototype[] prototypes
+}
+
+class Subject {
+	String name
+	refers Prototype superType
+	contains Attribute[] attributes
+
+	op String toString() {
+		return 'name: "' + name + '"'
+	}
+}
+
+class Prototype {
+	String name
+	refers Prototype superType
+	contains Attribute[] attributes
+
+	op String toString() {
+		return 'name: "' + name + '"'
+	}
+}
+
+class Attribute {
+	String name
+	String title
+	
+	op String toString() {
+		return 'name: "' + name + '"'
+	}
+}

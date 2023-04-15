@@ -1,0 +1,16 @@
+Manifest-Version: 1.0
+Automatic-Module-Name: snn.apds.dsl.subjects.ide
+Bundle-ManifestVersion: 2
+Bundle-Name: snn.apds.dsl.subjects.ide
+Bundle-Vendor: My Company
+Bundle-Version: 1.0.0.qualifier
+Bundle-SymbolicName: snn.apds.dsl.subjects.ide; singleton:=true
+Bundle-ActivationPolicy: lazy
+Require-Bundle: snn.apds.dsl.subjects,
+ snn.apds.dsl.attributes.model,
+ org.eclipse.xtext.ide,
+ org.eclipse.xtext.xbase.ide,
+ org.antlr.runtime;bundle-version="[3.2.0,3.2.1)"
+Bundle-RequiredExecutionEnvironment: JavaSE-17
+Export-Package: snn.apds.dsl.subjects.ide.contentassist.antlr,
+ snn.apds.dsl.subjects.ide.contentassist.antlr.internal
