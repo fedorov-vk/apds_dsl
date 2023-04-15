@@ -12,16 +12,18 @@ import org.eclipse.ui.IWorkbench;
 import org.eclipse.ui.dialogs.WizardNewProjectCreationPage;
 import org.eclipse.ui.wizards.newresource.BasicNewProjectResourceWizard;
 
-import snn.apds.projects.CustomProjectSupport;
+import snn.apds.projects.ApdsProjectSupport;
 
 public class NewProjectApds extends Wizard implements INewWizard, IExecutableExtension {
 
+	private static final String WIZARD_NAME = "New APDS Project"; //$NON-NLS-1$
 	private static final String PAGE_NAME = "Custom Plug-in Project Wizard"; //$NON-NLS-1$
-	private WizardNewProjectCreationPage _pageOne;
-	private IConfigurationElement _configurationElement;
+
+	private WizardNewProjectCreationPage pageOne;
+	private IConfigurationElement configurationElement;
 
 	public NewProjectApds() {
-		// TODO Auto-generated constructor stub
+		setWindowTitle(WIZARD_NAME);
 	}
 
 	@Override
@@ -32,14 +34,14 @@ public class NewProjectApds extends Wizard implements INewWizard, IExecutableExt
 
 	@Override
 	public boolean performFinish() {
-		String name = _pageOne.getProjectName();
+		String name = pageOne.getProjectName();
 		URI location = null;
-		if (!_pageOne.useDefaults()) {
-			location = _pageOne.getLocationURI();
+		if (pageOne.useDefaults() == false) {
+			location = pageOne.getLocationURI();
 		} // else location == null
 
-		CustomProjectSupport.createProject(name, location);
-		BasicNewProjectResourceWizard.updatePerspective(_configurationElement);
+		ApdsProjectSupport.createProject(name, location);
+		BasicNewProjectResourceWizard.updatePerspective(configurationElement);
 
 		return true;
 	}
@@ -47,18 +49,17 @@ public class NewProjectApds extends Wizard implements INewWizard, IExecutableExt
 	@Override
 	public void addPages() {
 		super.addPages();
+		pageOne = new WizardNewProjectCreationPage(PAGE_NAME);
+		pageOne.setTitle(NewWizardMessages.ApdsProjectNewWizard_Custom_Plugin_Project);
+		pageOne.setDescription(NewWizardMessages.ApdsProjectNewWizard_Create_something_custom);
 
-		_pageOne = new WizardNewProjectCreationPage(PAGE_NAME);
-		_pageOne.setTitle(NewWizardMessages.CustomProjectNewWizard_Custom_Plugin_Project);
-		_pageOne.setDescription(NewWizardMessages.CustomProjectNewWizard_Create_something_custom);
-
-		addPage(_pageOne);
+		addPage(pageOne);
 	}
 
 	@Override
 	public void setInitializationData(IConfigurationElement config, String propertyName, Object data)
 			throws CoreException {
-		_configurationElement = config;
+		configurationElement = config;
 	}
 
 }

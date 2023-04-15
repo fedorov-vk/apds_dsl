@@ -14,6 +14,7 @@ import snn.apds.dsl.attributes.Prototype
 
 import static extension org.eclipse.xtext.EcoreUtil2.*
 import snn.apds.dsl.attributes.AttributesPackage
+import snn.apds.dsl.prototypes.PluginActivator
 
 /**
  * This class contains custom validation rules. 
@@ -28,6 +29,30 @@ class PrototypeValidator extends AbstractPrototypeValidator {
 //	@Inject ApdsDslLib apdsDslLib
 	@Inject ApdsDslIndex apdsDslIndex
 
+	@Inject ResourceDescriptionsProvider rdp
+
+	@Inject
+	def setRdp(ResourceDescriptionsProvider rdp1) {
+		PluginActivator.instance.rdp = rdp1;
+	}
+
+	@Check
+	def void checkClassPerFile(Prototype clazz) {
+		val siblings = clazz.getSiblingsOfType(Prototype)
+		if (siblings.length > 0) {
+			val uriClass = clazz.normalizedURI
+			val classes = apdsDslIndex.getVisiblePrototypesDescriptions(clazz)
+			if (classes.get(0).EObjectURI == uriClass) {
+				for (cl : siblings) {
+					error("The type " + cl.name + " should declared in another file", //
+					cl, //
+					AttributesPackage.Literals.PROTOTYPE__NAME, //
+					MORE_CLASSES)
+				}
+			}
+		}
+	}
+
 //	public static val INVALID_NAME = 'invalidName'
 //
 //	@Check
@@ -38,19 +63,4 @@ class PrototypeValidator extends AbstractPrototypeValidator {
 //					INVALID_NAME)
 //		}
 //	}
-	@Check
-	def void checkClassPerFile(Prototype clazz) {
-		val siblings = clazz.getSiblingsOfType(Prototype)
-		if (siblings.length > 0) {
-			val uriClass = clazz.normalizedURI
-			val classes = apdsDslIndex.getVisiblePrototypesDescriptions(clazz)
-			if (classes.get(0).EObjectURI == uriClass) {
-				for (cl : siblings) {
-					error("The type " + cl.name + " should declared in another file", cl,
-						AttributesPackage.Literals.PROTOTYPE__NAME, MORE_CLASSES)
-				}
-			}
-		}
-	}
-
 }

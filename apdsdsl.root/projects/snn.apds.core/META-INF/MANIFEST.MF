@@ -1,0 +1,17 @@
+Manifest-Version: 1.0
+Bundle-ManifestVersion: 2
+Bundle-Name: Apds Core
+Bundle-SymbolicName: snn.apds.core;singleton:=true
+Bundle-Version: 1.0.0.qualifier
+Bundle-Activator: snn.apds.core.Activator
+Bundle-Vendor: SNN
+Require-Bundle: org.eclipse.core.runtime,
+ org.eclipse.xtext.util,
+ org.eclipse.xtext.xbase.lib,
+ org.eclipse.xtext,
+ org.eclipse.core.resources,
+ snn.apds.dsl.attributes.model
+Bundle-RequiredExecutionEnvironment: JavaSE-17
+Automatic-Module-Name: snn.apds.core
+Bundle-ActivationPolicy: lazy
+Export-Package: snn.apds.core.natures

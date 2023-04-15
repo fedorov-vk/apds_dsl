@@ -8,6 +8,7 @@ Bundle-SymbolicName: snn.apds.dsl.prototypes.ui; singleton:=true
 Bundle-ActivationPolicy: lazy
 Require-Bundle: snn.apds.dsl.prototypes,
  snn.apds.dsl.prototypes.ide,
+ snn.apds.dsl.attributes.model,
  org.eclipse.xtext.ui,
  org.eclipse.xtext.ui.shared,
  org.eclipse.xtext.ui.codetemplates.ui,

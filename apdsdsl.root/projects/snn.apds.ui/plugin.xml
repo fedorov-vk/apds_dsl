@@ -4,40 +4,31 @@
    <extension
          point="org.eclipse.ui.newWizards">
       <category
-            id="snn.apds.ui.category.wizards"
-            name="Проект APDS"
+            id="snn.apds.wizards.category"
+            name="ADPS Wizards"
             parentCategory="org.eclipse.ui.Basic">
       </category>
       <wizard
             category="snn.apds.ui.category.wizards"
             class="snn.apds.ui.wizards.NewProjectApds"
-            finalPerspective="snn.apds.ui.perspective"
-            icon="icons/sample.gif"
-            id="snn.apds.ui.wizard.new.apds"
-            name="Новый проект APDS">
+            finalPerspective="snn.apds.perspective"
+            icon="icons/objs16/project-folder.png"
+            id="snn.apds.new_project.wizard"
+            name="New APDS Project">
       </wizard>
-   </extension>
-   <extension
-         id="apds.nature"
-         point="org.eclipse.core.resources.natures">
-      <runtime>
-         <run
-               class="snn.apds.natures.ProjectNature">
-         </run>
-      </runtime>
    </extension>
    <extension
          point="org.eclipse.ui.perspectives">
       <perspective
             class="snn.apds.ui.perspectives.PerspectiveFactory"
-            id="snn.apds.ui.perspective"
+            id="snn.apds.perspective"
             name="APDS">
       </perspective>
    </extension>
    <extension
          point="org.eclipse.ui.perspectiveExtensions">
       <perspectiveExtension
-            targetID="snn.apds.ui.perspective">
+            targetID="snn.apds.perspective">
          <view
                id="snn.apds.ui.views.ApdsNavigator"
                minimized="false"
@@ -56,6 +47,11 @@
             id="snn.apds.ui.views.ApdsNavigator"
             name="Apds Navigator"
             restorable="true">
+      </view>
+      <view
+            class="snn.apds.ui.views.model.ModelView"
+            id="snn.apds.ui.views.model.ModelView"
+            name="Model View">
       </view>
    </extension>
    <extension

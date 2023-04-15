@@ -1,4 +1,4 @@
-package snn.apds.xtend.core
+package snn.apds.core.xtend
 
 import com.google.inject.Inject
 import org.apache.log4j.Logger
@@ -9,7 +9,7 @@ import snn.apds.dsl.attributes.Prototype
 
 class ApdsDslLib {
 
-	@Inject extension ApdsDslIndex
+	 @Inject extension ApdsDslIndex
 
 	public val static MAIN_LIB = "smalljava/lang/mainlib.smalljava"
 

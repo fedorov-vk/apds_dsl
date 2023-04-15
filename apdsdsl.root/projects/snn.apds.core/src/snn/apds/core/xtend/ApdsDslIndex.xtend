@@ -1,4 +1,4 @@
-package snn.apds.xtend.core
+package snn.apds.core.xtend
 
 import com.google.inject.Inject
 import org.eclipse.emf.ecore.EClass
