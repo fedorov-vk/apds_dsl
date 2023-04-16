@@ -15,13 +15,17 @@ Require-Bundle: org.eclipse.xtext,
  org.eclipse.xtext.util,
  org.antlr.runtime;bundle-version="[3.2.0,3.2.1)",
  org.eclipse.xtend.lib;bundle-version="2.14.0",
- org.eclipse.osgi
+ org.eclipse.osgi,
+ org.eclipse.xtext.common.types,
+ org.objectweb.asm;bundle-version="[9.4.0,9.5.0)",
+ org.eclipse.emf.ecore.xcore.lib
 Bundle-RequiredExecutionEnvironment: JavaSE-17
 Import-Package: org.apache.log4j
-Export-Package: snn.apds.dsl.prototypes.serializer,
+Export-Package: snn.apds.dsl.prototypes,
+ snn.apds.dsl.prototypes.jvmmodel,
  snn.apds.dsl.prototypes.parser.antlr,
- snn.apds.dsl.prototypes.scoping,
- snn.apds.dsl.prototypes,
  snn.apds.dsl.prototypes.parser.antlr.internal,
+ snn.apds.dsl.prototypes.scoping,
+ snn.apds.dsl.prototypes.serializer,
  snn.apds.dsl.prototypes.services,
  snn.apds.dsl.prototypes.validation

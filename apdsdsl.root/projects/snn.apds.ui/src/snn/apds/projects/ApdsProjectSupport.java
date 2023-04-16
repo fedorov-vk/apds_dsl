@@ -4,6 +4,7 @@ import java.net.URI;
 import java.util.ArrayList;
 import java.util.Arrays;
 
+import org.eclipse.core.resources.ICommand;
 import org.eclipse.core.resources.IContainer;
 import org.eclipse.core.resources.IFolder;
 import org.eclipse.core.resources.IProject;
@@ -38,7 +39,7 @@ public class ApdsProjectSupport {
 		try {
 			addNature(project);
 
-			String[] paths = { "parent/child1-1/child2", "parent/child1-2/child2/child3" }; //$NON-NLS-1$ //$NON-NLS-2$
+			String[] paths = { "прототипы", "объекты" }; //$NON-NLS-1$ //$NON-NLS-2$
 			addToProjectStructure(project, paths);
 		} catch (CoreException e) {
 			e.printStackTrace();
@@ -49,13 +50,14 @@ public class ApdsProjectSupport {
 	}
 
 	/**
-	 * Просто сделать основное: создать базовый проект.
+	 * Просто сделать основное: создать базовый проект, если его нет.
 	 * 
-	 * @param location
-	 * @param projectName
+	 * @param projectName имя проекта.
+	 * @param location    место размещения проекта.
+	 * @return созданный проект.
 	 */
 	private static IProject createBaseProject(String projectName, URI location) {
-		// it is acceptable to use the ResourcesPlugin class
+		// приемлемо использование класса ResourcesPlugin.
 		IProject newProject = ResourcesPlugin.getWorkspace().getRoot().getProject(projectName);
 
 		if (newProject.exists() == false) {
@@ -90,23 +92,22 @@ public class ApdsProjectSupport {
 	}
 
 	/**
-	 * Create a folder structure with a parent root, overlay, and a few child
-	 * folders.
+	 * Создает заданную структуру каталогов в проекте.
 	 * 
-	 * @param newProject
-	 * @param paths
+	 * @param project проект.
+	 * @param paths   список путей каталогов, относительно корня проекта.
 	 * @throws CoreException
 	 */
-	private static void addToProjectStructure(IProject newProject, String[] paths) throws CoreException {
+	private static void addToProjectStructure(IProject project, String[] paths) throws CoreException {
 		for (String path : paths) {
-			IFolder etcFolders = newProject.getFolder(path);
+			IFolder etcFolders = project.getFolder(path);
 			createFolder(etcFolders);
 		}
 	}
 
 	/**
-	 * Добавляет природу проекту - APDS, Xtext.
-	 * 
+	 * Добавляет проекту: APDS природу; Xtext природу, билдер.
+	 *
 	 * @param project
 	 * @throws CoreException
 	 */
@@ -118,10 +119,17 @@ public class ApdsProjectSupport {
 		if (hasApdsNature == false || hasXtextNature == false) {
 			IProjectDescription description = project.getDescription();
 			ArrayList<String> natures = new ArrayList<String>(Arrays.asList(description.getNatureIds()));
-			if (hasApdsNature == false)
+			if (hasApdsNature == false) {
+				// Добавить APDS природу.
 				natures.add(ApdsProjectNature.NATURE_ID);
-			if (hasXtextNature == false)
+			}
+			if (hasXtextNature == false) {
+				// Добавить Xtext природу, builder spec.
 				natures.add(XtextProjectHelper.NATURE_ID);
+				ICommand buildCommand = description.newCommand();
+				buildCommand.setBuilderName(XtextProjectHelper.BUILDER_ID);
+				description.setBuildSpec(new ICommand[] { buildCommand });
+			}
 			description.setNatureIds(natures.toArray(new String[natures.size()]));
 
 			IProgressMonitor monitor = null;

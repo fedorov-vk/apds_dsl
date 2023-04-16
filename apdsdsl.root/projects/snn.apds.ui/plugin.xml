@@ -80,5 +80,12 @@
          </includes>
       </viewerContentBinding>
    </extension>
+   <extension
+         point="org.eclipse.ui.ide.resourceFilters">
+      <filter
+            pattern="*.prot"
+            selected="false">
+      </filter>
+   </extension>
 
 </plugin>
