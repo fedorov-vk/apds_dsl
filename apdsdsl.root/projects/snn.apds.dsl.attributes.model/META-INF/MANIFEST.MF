@@ -7,7 +7,10 @@ Bundle-SymbolicName: snn.apds.dsl.attributes.model; singleton:=true
 Automatic-Module-Name: snn.apds.dsl.attributes.model
 Bundle-Vendor: SNN
 Bundle-Version: 0.1.0.qualifier
-Require-Bundle: org.eclipse.emf.ecore,
+Bundle-ClassPath: .
+Bundle-Localization: plugin
+Require-Bundle: org.eclipse.core.runtime,
+ org.eclipse.emf.ecore;visibility:=reexport,
  org.eclipse.xtext.xbase.lib,
  org.eclipse.emf.ecore.xcore.lib
 Export-Package: snn.apds.dsl.attributes,

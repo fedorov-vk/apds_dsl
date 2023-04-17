@@ -26,5 +26,6 @@ Import-Package: org.apache.log4j
 Bundle-RequiredExecutionEnvironment: JavaSE-17
 Export-Package: snn.apds.dsl.subjects.ui.contentassist,
  snn.apds.dsl.subjects.ui.internal,
- snn.apds.dsl.subjects.ui.quickfix
+ snn.apds.dsl.subjects.ui.quickfix,
+ snn.apds.dsl.subjects.ui.editor
 Bundle-Activator: snn.apds.dsl.subjects.ui.internal.SubjectsActivator

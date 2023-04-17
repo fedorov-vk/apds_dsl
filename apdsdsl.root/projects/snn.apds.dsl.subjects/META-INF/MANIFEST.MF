@@ -17,12 +17,12 @@ Require-Bundle: snn.apds.dsl.attributes.model,
  org.eclipse.xtext.common.types,
  org.objectweb.asm;bundle-version="9.4.0"
 Bundle-RequiredExecutionEnvironment: JavaSE-17
-Export-Package: snn.apds.dsl.subjects.serializer,
- snn.apds.dsl.subjects.services,
+Export-Package: snn.apds.dsl.subjects,
+ snn.apds.dsl.subjects.jvmmodel,
  snn.apds.dsl.subjects.parser.antlr,
- snn.apds.dsl.subjects.validation,
- snn.apds.dsl.subjects.generator,
  snn.apds.dsl.subjects.parser.antlr.internal,
  snn.apds.dsl.subjects.scoping,
- snn.apds.dsl.subjects
+ snn.apds.dsl.subjects.serializer,
+ snn.apds.dsl.subjects.services,
+ snn.apds.dsl.subjects.validation
 Import-Package: org.apache.log4j
