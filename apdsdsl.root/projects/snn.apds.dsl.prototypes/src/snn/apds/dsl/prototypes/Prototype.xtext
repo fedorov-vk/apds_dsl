@@ -21,20 +21,24 @@ PrototypesHolder:
 
 Prototype returns Prototype:
 	{Prototype}
-	'prototype' name=ID ('extends' superType=[Prototype|QualifiedName])? '{'
+	'прототип' name=ID
+	'атрибуты' '{'
 	attributes+=Attribute*
+	'}'
+	'отображения' '{'
+	representations+=Representation*
 	'}';
+
+Representation returns Representation:
+	{Representation}
+	name=ID
+	;
 
 Attribute returns Attribute:
 	{Attribute}
-	'attribute'
 	name=ID
-	'{'
-	('title' title=ID)?
-	'}';
-
+	(value=STRING)? ';';
 //QualifiedName:
 //        ID ('.' ID)* ;
-
 //QualifiedNameWithWildcard:
 //        QualifiedName '.*'? ;
