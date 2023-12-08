@@ -15,7 +15,7 @@ Require-Bundle: snn.apds.dsl.attributes.model,
  org.antlr.runtime;bundle-version="[3.2.0,3.2.1)",
  org.eclipse.xtend.lib,
  org.eclipse.xtext.common.types,
- org.objectweb.asm;bundle-version="9.4.0"
+ org.objectweb.asm
 Bundle-RequiredExecutionEnvironment: JavaSE-17
 Export-Package: snn.apds.dsl.subjects,
  snn.apds.dsl.subjects.jvmmodel,
